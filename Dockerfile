@@ -20,9 +20,9 @@ RUN apt-get update
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
 RUN apt-get install -y oracle-java7-installer
-ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV PATH $PATH:$JAVA_HOME/bin
-RUN echo "export JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> /root/.bashrc
+RUN echo "export JAVA_HOME=/usr/lib/jvm/java-8-oracle" >> /root/.bashrc
 RUN echo "export PATH=$PATH:$JAVA_HOME/bin" >> /root/.bashrc
 
 # Install tools
@@ -30,7 +30,7 @@ RUN apt-get install -y curl openssh-server
 
 # Install hadoop
 RUN mkdir -p /opt/hadoop
-RUN curl http://www.eu.apache.org/dist/hadoop/common/hadoop-2.5.0/hadoop-2.5.0.tar.gz --progress-bar | tar -xz -C /opt/hadoop/
+RUN curl http://www.eu.apache.org/dist/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz --progress-bar | tar -xz -C /opt/hadoop/
 RUN cd /opt/hadoop/ && ln -s hadoop-2.5.0 current
 ENV HADOOP_PREFIX /opt/hadoop/current
 ENV HADOOP_HOME /opt/hadoop/current
